@@ -9,7 +9,7 @@ export class RedisService implements OnModuleDestroy {
   ) {
   }
 
-  onModuleDestroy(): any {
+  onModuleDestroy() {
     this.redis.quit();
   }
 

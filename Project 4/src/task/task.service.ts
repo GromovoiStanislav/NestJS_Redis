@@ -1,7 +1,9 @@
 import { Injectable, OnModuleDestroy, OnModuleInit } from "@nestjs/common";
 import { Schema, Repository, EntityId } from "redis-om";
-import { createClient } from "redis";
-import { ConfigService } from '@nestjs/config';
+// import { createClient } from "redis";
+// import { ConfigService } from '@nestjs/config';
+import { RedisService } from "../redis/redis.service";
+import { RedisClient } from "../redis/redis-client.type";
 
 export interface Task {
   id?: string;
@@ -30,11 +32,15 @@ export const taskSchema = new Schema(
 export class TaskService implements OnModuleInit, OnModuleDestroy {
 
   private readonly taskRepository: Repository;
-  private readonly client;
+  private readonly client:RedisClient;
 
-  constructor(private configService: ConfigService) {
-    this.client = createClient({ url: configService.get<string>("REDIS_URL") || "redis://127.0.0.1:6379" });
-    this.client.connect()
+  constructor(
+    //private configService: ConfigService,
+    private readonly redisService: RedisService
+    ) {
+    // this.client = createClient({ url: configService.get<string>("REDIS_URL") || "redis://127.0.0.1:6379" });
+    // this.client.connect()
+    this.client = redisService.getClient()
     this.taskRepository = new Repository(taskSchema, this.client);
   }
 
@@ -44,7 +50,7 @@ export class TaskService implements OnModuleInit, OnModuleDestroy {
   }
 
   onModuleDestroy(): any {
-    this.client.quit();
+    //this.client.quit();
   }
 
 
