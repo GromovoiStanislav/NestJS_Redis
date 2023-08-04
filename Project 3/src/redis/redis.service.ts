@@ -1,11 +1,11 @@
 import { Injectable, Inject, OnModuleDestroy } from "@nestjs/common";
-import * as Redis from "ioredis";
+import { REDIS_CLIENT, RedisClient } from "./redis-client.type";
 
 @Injectable()
 export class RedisService implements OnModuleDestroy {
 
   constructor(
-    @Inject("REDIS_CONNECTION") private readonly redis: Redis.Redis
+    @Inject(REDIS_CLIENT) private readonly redis: RedisClient
   ) {
   }
 
@@ -27,5 +27,7 @@ export class RedisService implements OnModuleDestroy {
   async deleteValue(key: string): Promise<void> {
     await this.redis.del(key);
   }
+
+
 }
 

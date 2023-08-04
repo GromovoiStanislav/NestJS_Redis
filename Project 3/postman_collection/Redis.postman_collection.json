@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "68e1ee95-460f-4a62-bdec-cae92940555b",
+		"name": "Redis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "redis/:key/:value",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/redis/kkk/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"redis",
+						"kkk",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "redis/:key",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/redis/kkk",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"redis",
+						"kkk"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "redis/:key",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/redis/kkk",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"redis",
+						"kkk"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
