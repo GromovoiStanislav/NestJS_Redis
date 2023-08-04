@@ -8,7 +8,7 @@ import { RedisService } from './redis.service';
     {
       provide: 'REDIS_CONNECTION',
       useFactory: (configService: ConfigService) => {
-        return new Redis(configService.get('REDIS_URL'));
+        return new Redis(configService.get<string>('REDIS_URL') || "redis://127.0.0.1:6379");
         // return new Redis({
         //   host: configService.get('REDIS_HOST'),
         //   port: parseInt(configService.get('REDIS_PORT')),
