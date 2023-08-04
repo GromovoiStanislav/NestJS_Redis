@@ -1,5 +1,3 @@
-## NestJS with Redis example
+## NestJS with Redis examples
 
-```
-npm i redis
-```
+- 1 - simple example with redis
