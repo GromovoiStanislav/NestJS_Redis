@@ -4,3 +4,4 @@
 - 2 - with ioredis example
 - 3 - with redis example
 - 4 - with redis-om
+- 5 - integrate Redis PUB/SUB in NestJS
