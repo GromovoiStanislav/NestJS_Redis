@@ -1,5 +1,6 @@
 import { Injectable, OnModuleInit } from "@nestjs/common";
 import { createClient } from "redis";
+import {CreateUserDto} from "./create-user.dto";
 
 
 @Injectable()
@@ -17,11 +18,11 @@ export class UsersService implements OnModuleInit {
 
   async getALLUsers() {
     const users = [];
-    for await (const key of this.client.scanIterator()) {
-      if (await this.client.type(key) === "hash") {
-        users.push(await this.client.hGetAll(key));
-      }
-    }
+    // for await (const key of this.client.scanIterator()) {
+    //   if (await this.client.type(key) === "hash") {
+    //     users.push(await this.client.hGetAll(key));
+    //   }
+    // }
     return users;
   }
 
@@ -29,13 +30,14 @@ export class UsersService implements OnModuleInit {
     return this.client.hGetAll(id);
   }
 
-  async create(user: any): Promise<any> {
-    // return this.client.hmset(`${users.ID}`, user)
-    await this.saveObjectToRedis(user.id, user)
-      .catch((err) => {
-        console.error("Error saving object in Redis:", err);
-      });
-    return this.findById(user.id);
+  async create(user: CreateUserDto): Promise<any> {
+    // @ts-ignore
+    await this.client.hSet(`user:${user.id}`, user)
+    // await this.saveObjectToRedis(user.id, user)
+    //   .catch((err) => {
+    //     console.error("Error saving object in Redis:", err);
+    //   });
+    return this.findById(`user:${user.id}`);
   }
 
   async update(id: number, newValues: any): Promise<any> {
@@ -49,7 +51,8 @@ export class UsersService implements OnModuleInit {
 
 
   async delete(id: number): Promise<any> {
-    return this.client.del(`${id}`);
+    // @ts-ignore
+    return this.client.del(`user:${id}`);
   }
 
 
