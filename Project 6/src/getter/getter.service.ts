@@ -1,13 +1,11 @@
 import {Injectable} from '@nestjs/common';
 import {ConfigService} from '@nestjs/config';
-import {Cron, CronExpression} from '@nestjs/schedule';
-import {randomUUID} from 'crypto';
 import Redis from 'ioredis';
-import {CHANNEL_example} from "../common/const";
+import {Cron, CronExpression} from "@nestjs/schedule";
 
 
 @Injectable()
-export class PublisherService {
+export class GetterService {
     private readonly redis: Redis;
 
     constructor(
@@ -21,13 +19,9 @@ export class PublisherService {
         });
     }
 
-    @Cron(CronExpression.EVERY_5_SECONDS)
-    publish() {
-        this.redis.publish(CHANNEL_example, JSON.stringify({uuid: randomUUID()}));
+    @Cron(CronExpression.EVERY_SECOND)
+    async get() {
+        console.log("mykey", await this.redis.get("mykey"))
     }
 
-    @Cron(CronExpression.EVERY_SECOND)
-    set() {
-        this.redis.incr("mykey");
-    }
 }

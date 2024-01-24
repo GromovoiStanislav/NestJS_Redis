@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import {PublisherService} from "./publish.service";
 import {ScheduleModule} from "@nestjs/schedule";
+import {GetterService} from "./getter.service";
 
 @Module({
   imports: [ScheduleModule.forRoot()],
   controllers: [],
-  providers: [PublisherService],
+  providers: [GetterService],
 })
-export class PublisherModule {}
+export class GetterModule {}
