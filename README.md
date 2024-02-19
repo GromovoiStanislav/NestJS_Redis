@@ -7,3 +7,4 @@
 - 4 - with redis-om
 - 5 - integrate Redis PUB/SUB in NestJS
 - 6 - Redis (ioredis) implementation
+- 7 - NestJS with Redis (ioredis)
