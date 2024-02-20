@@ -1,0 +1,31 @@
+@url=http://localhost:3000
+
+
+###
+GET {{url}}
+
+
+###
+POST {{url}}/password/generate-token
+Content-Type: application/json
+
+{
+    "userId": "458"
+}
+
+
+###
+POST  {{url}}/password/update-password
+Content-Type: application/json
+
+{
+    "userId": "458",
+    "token": "32ba4d47-0801-4405-afd9-e75f6a1ab0fa",
+    "password": "123"
+}
+
+
+###
+GET {{url}}/products/2
+
+
