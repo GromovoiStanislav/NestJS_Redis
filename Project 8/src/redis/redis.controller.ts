@@ -147,8 +147,7 @@ export class RedisController {
   }
 
 
-
-  @Get('values/lists/lrange/:key')
+  @Get("values/lists/lrange/:key")
   /**
    * It gets a range of values from a list stored in Redis
    * @param {string} key - The key of the list you want to get the range from.
@@ -157,9 +156,9 @@ export class RedisController {
    * @returns The list of values from the redis list.
    */
   async getLrangeFromList(
-    @Param('key') key: string,
-    @Query('from') from: number,
-    @Query('to') to: number,
+    @Param("key") key: string,
+    @Query("from") from: number,
+    @Query("to") to: number
   ) {
     return await this._redis.getLrangeFromList(key, from, to).catch((e) => {
       throw new InternalServerErrorException(e.message);
@@ -167,51 +166,50 @@ export class RedisController {
   }
 
 
+  @Post("values/sets/:key")
+  /**
+   * It adds members to a set
+   * @param {string} key - The key of the set you want to add members to.
+   * @param payload - [string]
+   * @returns The number of members added to the set.
+   */
+  async addMembersToSet(
+    @Param("key") key: string,
+    @Body() payload: [string]
+  ) {
+    return await this._redis.saddToSet(key, payload).catch((e) => {
+      throw new InternalServerErrorException(e.message);
+    });
+  }
 
 
-  // @ApiTags('Set')
-  // @Post('values/sets/:key')
-  // /**
-  //  * It adds members to a set
-  //  * @param {string} key - The key of the set you want to add members to.
-  //  * @param payload - [string]
-  //  * @returns The number of members added to the set.
-  //  */
-  // async addMembersToSet(@Param('key') key: string, @Body() payload: [string]) {
-  //   return await this._redis.saddToSet(key, payload).catch((e) => {
-  //     throw new InternalServerErrorException(e.message);
-  //   });
-  // }
+  @Get("values/sets/members/:key")
+  /**
+   * It returns the members of a set stored in Redis
+   * @param {string} key - The key of the set you want to get the members of.
+   * @returns The members of the set.
+   */
+  async getMembersOfSet(@Param("key") key: string) {
+    return await this._redis.getMembersOfSet(key).catch((e) => {
+      throw new InternalServerErrorException(e.message);
+    });
+  }
 
 
-  // @ApiTags('Set')
-  // @Get('values/sets/members/:key')
-  // /**
-  //  * It returns the members of a set stored in Redis
-  //  * @param {string} key - The key of the set you want to get the members of.
-  //  * @returns The members of the set.
-  //  */
-  // async getMembersOfSet(@Param('key') key: string) {
-  //   return await this._redis.getMembersOfSet(key).catch((e) => {
-  //     throw new InternalServerErrorException(e.message);
-  //   });
-  // }
+  @Delete("values/sets/:key")
+  /**
+   * It removes members from a set
+   * @param {string} key - The key of the set you want to remove members from.
+   * @param payload - [string]
+   * @returns The number of members that were removed from the set, not including non existing members.
+   */
+  async removeMembersFromSet(
+    @Param("key") key: string,
+    @Body() payload: [string]
+  ) {
+    return await this._redis.removeMembersFromSet(key, payload).catch((e) => {
+      throw new InternalServerErrorException(e.message);
+    });
+  }
 
-
-  // @ApiTags('Set')
-  // @Delete('values/sets/:key')
-  // /**
-  //  * It removes members from a set
-  //  * @param {string} key - The key of the set you want to remove members from.
-  //  * @param payload - [string]
-  //  * @returns The number of members that were removed from the set, not including non existing members.
-  //  */
-  // async removeMembersFromSet(
-  //   @Param('key') key: string,
-  //   @Body() payload: [string],
-  // ) {
-  //   return await this._redis.removeMembersFromSet(key, payload).catch((e) => {
-  //     throw new InternalServerErrorException(e.message);
-  //   });
-  // }
 }
