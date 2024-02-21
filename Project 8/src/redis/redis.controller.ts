@@ -147,25 +147,26 @@ export class RedisController {
   }
 
 
-  // @ApiTags('List')
-  // @Get('values/lists/lrange/:key')
-  //
-  // /**
-  //  * It gets a range of values from a list stored in Redis
-  //  * @param {string} key - The key of the list you want to get the range from.
-  //  * @param {number} from - The starting index of the range.
-  //  * @param {number} to - number,
-  //  * @returns The list of values from the redis list.
-  //  */
-  // async getLrangeFromList(
-  //   @Param('key') key: string,
-  //   @Query('from') from: number,
-  //   @Query('to') to: number,
-  // ) {
-  //   return await this._redis.getLrangeFromList(key, from, to).catch((e) => {
-  //     throw new InternalServerErrorException(e.message);
-  //   });
-  // }
+
+  @Get('values/lists/lrange/:key')
+  /**
+   * It gets a range of values from a list stored in Redis
+   * @param {string} key - The key of the list you want to get the range from.
+   * @param {number} from - The starting index of the range.
+   * @param {number} to - number,
+   * @returns The list of values from the redis list.
+   */
+  async getLrangeFromList(
+    @Param('key') key: string,
+    @Query('from') from: number,
+    @Query('to') to: number,
+  ) {
+    return await this._redis.getLrangeFromList(key, from, to).catch((e) => {
+      throw new InternalServerErrorException(e.message);
+    });
+  }
+
+
 
 
   // @ApiTags('Set')

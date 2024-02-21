@@ -150,18 +150,18 @@ export class RedisService implements OnModuleInit, OnApplicationShutdown {
   }
 
 
-//   /**
-//    * It fetches a range of elements from a list
-//    * @param {string} key - The key of the list
-//    * @param {number} from - The starting index of the range.
-//    * @param {number} to - The index of the last element to get.
-//    */
-//   async getLrangeFromList(key: string, from: number, to: number) {
-//     return await this.redis.lrange(key, from, to).catch((e) => {
-//       this._logger.error(e, `error on fetching data from list`);
-//       throw new Error(e.message);
-//     });
-//   }
+  /**
+   * It fetches a range of elements from a list
+   * @param {string} key - The key of the list
+   * @param {number} from - The starting index of the range.
+   * @param {number} to - The index of the last element to get.
+   */
+  async getLrangeFromList(key: string, from: number, to: number) {
+    return await this.redis.lrange(key, from, to).catch((e) => {
+      this._logger.error(e, `error on fetching data from list`);
+      throw new Error(e.message);
+    });
+  }
 
 
 //   /**

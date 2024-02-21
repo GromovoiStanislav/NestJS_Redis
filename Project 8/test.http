@@ -3,6 +3,7 @@
 ###
 GET {{url}}
 
+
 ###
 GET {{url}}/keys/hello*
 
@@ -11,7 +12,6 @@ DELETE {{url}}/keys/hello:3
 
 ###
 GET {{url}}/values/hello:1
-
 
 ###
 POST {{url}}/values/hello:3
@@ -33,9 +33,11 @@ Content-Type: application/json
 
 ["a","b","c"]
 
-
 ###
 POST {{url}}/values/lists/rpush/letters
 Content-Type: application/json
 
 [1,2,3]
+
+###
+GET {{url}}/values/lists/lrange/letters?from=0&to=-1
