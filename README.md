@@ -9,3 +9,4 @@
 - 6 - Redis (ioredis) implementation
 - 7.1 - NestJS with Redis (ioredis) example
 - 7.2 - NestJS with Redis (ioredis) example
+- 8 - NestJS with Redis (ioredis) example

@@ -1,0 +1,41 @@
+@url=http://localhost:3000
+
+###
+GET {{url}}
+
+###
+GET {{url}}/keys/hello*
+
+### 
+DELETE {{url}}/keys/hello:3
+
+###
+GET {{url}}/values/hello:1
+
+
+###
+POST {{url}}/values/hello:3
+Content-Type: application/json
+
+{
+    "userId": "458",
+    "name": "Tom",
+    "role": "admin"
+}
+
+###
+GET {{url}}/values/hello:3?parse=true
+
+
+###
+POST {{url}}/values/lists/lpush/letters
+Content-Type: application/json
+
+["a","b","c"]
+
+
+###
+POST {{url}}/values/lists/rpush/letters
+Content-Type: application/json
+
+[1,2,3]
