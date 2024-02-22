@@ -20,4 +20,9 @@ export class AppController {
     return this.appService.getSingleNewMessage();
   }
 
+  @Get('messages')
+  getMessages() {
+    return this.appService.getMultipleNewMessages(3);
+  }
+
 }
