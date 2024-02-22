@@ -11,3 +11,4 @@
 - 7.2 - NestJS with Redis (ioredis) example
 - 8 - NestJS with Redis (ioredis) example
 - 9 - @nestjs-modules/ioredis cache example
+- 10 - @nestjs-modules/ioredis simple example
