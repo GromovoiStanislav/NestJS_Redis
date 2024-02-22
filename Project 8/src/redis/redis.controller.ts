@@ -3,7 +3,7 @@ import {
   Controller,
   Delete,
   Get,
-  InternalServerErrorException, Logger,
+  InternalServerErrorException,
   Param,
   Post,
   Query,
@@ -16,8 +16,6 @@ import { RedisService } from "./redis.service";
 
 @Controller()
 export class RedisController {
-
-  private _logger = new Logger(RedisController.name);
 
   constructor(
     private _redis: RedisService

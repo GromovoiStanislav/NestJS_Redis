@@ -1,0 +1,12 @@
+@url=http://localhost:3000
+
+
+###
+GET {{url}}
+
+
+###
+GET {{url}}/order/hello?skip=0&take=3
+
+###
+GET {{url}}/comments/1?skip=0&take=3
