@@ -1,1 +1,1 @@
-##  NestJS with Redis (ioredis) cache example
+##  @nestjs-modules/ioredis cache example
