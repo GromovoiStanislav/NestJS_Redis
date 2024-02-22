@@ -1,13 +1,15 @@
 import { Module } from "@nestjs/common";
 import { redisClientFactory } from "./redis-client.factory";
 import { RedisService } from "./redis.service";
+import { StreamHandlerService } from './stream-handler.service';
 
 @Module({
   providers: [
     redisClientFactory,
-    RedisService
+    RedisService,
+    StreamHandlerService
   ],
-  exports: [RedisService]
+  exports: [StreamHandlerService]
 })
 export class RedisModule {
 }

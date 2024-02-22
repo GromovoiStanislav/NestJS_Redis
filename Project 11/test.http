@@ -2,3 +2,6 @@
 
 ###
 GET {{api}}/redis-ping
+
+###
+GET {{api}}/message

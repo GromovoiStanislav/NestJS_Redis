@@ -1,1 +1,1 @@
-## NestJS with Redis (redis) example
+## NestJS using Redis streams

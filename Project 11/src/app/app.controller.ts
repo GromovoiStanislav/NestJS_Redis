@@ -15,4 +15,9 @@ export class AppController {
     return this.appService.redisPing();
   }
 
+  @Get('message')
+  getMessage() {
+    return this.appService.getSingleNewMessage();
+  }
+
 }
