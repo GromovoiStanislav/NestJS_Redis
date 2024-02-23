@@ -13,6 +13,7 @@ export class AppService implements OnModuleInit, OnModuleDestroy {
   ) {
   }
 
+
   private async continuousReadMessages() {
     const generator = this.streamService.getStreamMessageGenerator(
       EXAMPLE_STREAM_NAME,
@@ -43,6 +44,7 @@ export class AppService implements OnModuleInit, OnModuleDestroy {
     }, 1000);
   }
 
+
   async onModuleInit() {
     this.continuousReadMessages();
 
@@ -50,27 +52,31 @@ export class AppService implements OnModuleInit, OnModuleDestroy {
     this.populateStream();
   }
 
+
   onModuleDestroy() {
     clearInterval(this.interval);
     this.isAlive = false;
   }
 
+
   public redisPing() {
     return this.streamService.ping();
   }
+
 
   public async getSingleNewMessage() {
     //return this.streamService.readFromStream(EXAMPLE_STREAM_NAME, 1);
 
     const generator = this.streamService.getStreamMessageGenerator(
       EXAMPLE_STREAM_NAME,
-      1,
+      1
     );
     const messageObj = await generator.next();
     if (!messageObj.done && messageObj.value) {
       return this.parseMessage(messageObj.value.message);
     }
   }
+
 
   public async getMultipleNewMessages(count: number) {
     const generator = this.streamService.getStreamMessageGenerator(
@@ -89,6 +95,7 @@ export class AppService implements OnModuleInit, OnModuleDestroy {
     return messages;
   }
 
+
   private parseMessage(message: Record<string, string>) {
     return Object.entries(message).reduce((acc, [key, value]) => {
       try {
@@ -98,6 +105,34 @@ export class AppService implements OnModuleInit, OnModuleDestroy {
       }
       return acc;
     }, {});
+  }
+
+
+  public async consumeMessageFromGroup(
+    group: string,
+    consumer: string,
+    count: number
+  ) {
+    const generator = this.streamService.getConsumerMessageGenerator({
+      streamName: EXAMPLE_STREAM_NAME,
+      group,
+      consumer,
+      count
+    });
+    const messages: Record<string, string>[] = [];
+    let counter = 0;
+    for await (const messageObj of generator) {
+      messages.push(this.parseMessage(messageObj.message));
+      counter++;
+      if (counter >= count) {
+        break;
+      }
+    }
+    return {
+      group,
+      consumer,
+      messages
+    };
   }
 
 }

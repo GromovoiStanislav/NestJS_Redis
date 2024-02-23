@@ -1,11 +1,21 @@
 @api =  http://localhost:3000
 
-###
+### ping-pong
 GET {{api}}/redis-ping
 
-###
+### get one message
 GET {{api}}/message
 
-###
+### get some messages
 GET {{api}}/messages
 
+
+### Consumer groups:
+###
+GET {{api}}/consume/example-group-1/example-consumer-1/3
+
+###
+GET {{api}}/consume/example-group-1/example-consumer-2/3
+
+###
+GET {{api}}/consume/example-group-2/example-consumer-1/3
