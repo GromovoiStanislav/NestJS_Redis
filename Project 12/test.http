@@ -1,0 +1,27 @@
+@api =  http://localhost:3000
+
+### 
+POST {{api}}/auth/register
+Content-Type: application/json
+
+{
+    "name": "Tom",
+    "email": "tom@gmail.com",
+    "password1": "123",
+    "password2": "123"
+}
+
+### 
+POST {{api}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "tom@gmail.com",
+    "password": "123"
+}
+
+
+### 
+GET {{api}}/auth/account
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxSFM4NDRaQUQ3RlYyNTBSV0NOVlhaMEFCIiwiaWF0IjoxNzEwNzQ5MzIyLCJleHAiOjE3MTA3NTkzMjJ9.JGVM7owtsMQnaOWSl-1yIqjbzhVHRiZFvVoi1eX_6hw
+

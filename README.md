@@ -13,3 +13,4 @@
 - 9 - @nestjs-modules/ioredis cache example
 - 10 - @nestjs-modules/ioredis simple example
 - 11 - NestJS using Redis streams\*\*
+- 12 - NestJS with RedisOM\*
