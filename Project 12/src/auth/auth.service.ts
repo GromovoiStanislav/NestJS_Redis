@@ -26,10 +26,12 @@ export class AuthService implements OnModuleInit {
   ) {
     this.usersRepository = new Repository(userSchema, redisClient.getClient());
     this.jwt = configService.get<IJwt>("jwt");
+    (async () => {await this.usersRepository.createIndex()})()
   }
 
   public async onModuleInit() {
-    await this.usersRepository.createIndex();
+    // This could go to the constructor
+    // await this.usersRepository.createIndex();
   }
 
 

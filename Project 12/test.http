@@ -1,27 +1,85 @@
 @api =  http://localhost:3000
 
-### 
+### Create new user
 POST {{api}}/auth/register
 Content-Type: application/json
 
 {
     "name": "Tom",
     "email": "tom@gmail.com",
-    "password1": "123",
-    "password2": "123"
+    "password1": "12345678",
+    "password2": "12345678"
 }
 
-### 
+### Logining
 POST {{api}}/auth/login
 Content-Type: application/json
 
 {
     "email": "tom@gmail.com",
-    "password": "123"
+    "password": "12345678"
 }
 
 
-### 
+### Get info about current user
 GET {{api}}/auth/account
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxSFM4NDRaQUQ3RlYyNTBSV0NOVlhaMEFCIiwiaWF0IjoxNzEwNzQ5MzIyLCJleHAiOjE3MTA3NTkzMjJ9.JGVM7owtsMQnaOWSl-1yIqjbzhVHRiZFvVoi1eX_6hw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxSFM4RlBEVlFHNFpBSlFRWlNEMFBWOTZZIiwiaWF0IjoxNzEwNzU1NjY0LCJleHAiOjE3MTA3NjU2NjR9.r-iG9ouLYeROD9ks1932pSVf8vk0qLAWrkj7Pstar9Y
 
+
+### Delete current user
+DELETE {{api}}/auth/account
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxSFM4NDRaQUQ3RlYyNTBSV0NOVlhaMEFCIiwiaWF0IjoxNzEwNzQ5MzIyLCJleHAiOjE3MTA3NTkzMjJ9.JGVM7owtsMQnaOWSl-1yIqjbzhVHRiZFvVoi1eX_6hw
+Content-Type: application/json
+
+{
+
+    "password": "12345678"
+}
+
+
+
+### Create new todo
+POST {{api}}/todos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxSFM4RlBEVlFHNFpBSlFRWlNEMFBWOTZZIiwiaWF0IjoxNzEwNzU1NjY0LCJleHAiOjE3MTA3NjU2NjR9.r-iG9ouLYeROD9ks1932pSVf8vk0qLAWrkj7Pstar9Y
+Content-Type: application/json
+
+{
+
+    "body": "Something #3"
+}
+
+
+
+### Get all todos
+GET {{api}}/todos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxSFM4RlBEVlFHNFpBSlFRWlNEMFBWOTZZIiwiaWF0IjoxNzEwNzU1NjY0LCJleHAiOjE3MTA3NjU2NjR9.r-iG9ouLYeROD9ks1932pSVf8vk0qLAWrkj7Pstar9Y
+
+### Get all completed todos
+GET {{api}}/todos?completed=true
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxSFM4RlBEVlFHNFpBSlFRWlNEMFBWOTZZIiwiaWF0IjoxNzEwNzU1NjY0LCJleHAiOjE3MTA3NjU2NjR9.r-iG9ouLYeROD9ks1932pSVf8vk0qLAWrkj7Pstar9Y
+
+### Get all uncompleted todos
+GET {{api}}/todos?completed=false
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxSFM4RlBEVlFHNFpBSlFRWlNEMFBWOTZZIiwiaWF0IjoxNzEwNzU1NjY0LCJleHAiOjE3MTA3NjU2NjR9.r-iG9ouLYeROD9ks1932pSVf8vk0qLAWrkj7Pstar9Y
+
+
+### Get one todo by ID
+GET {{api}}/todos/01HS8FT8EQSNYTQPWVKC6MXSMN
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxSFM4RlBEVlFHNFpBSlFRWlNEMFBWOTZZIiwiaWF0IjoxNzEwNzU1NjY0LCJleHAiOjE3MTA3NjU2NjR9.r-iG9ouLYeROD9ks1932pSVf8vk0qLAWrkj7Pstar9Y
+
+
+
+### Update todo by ID
+PATCH {{api}}/todos/01HS8FQZRZKY0NY5H95J583ZKW
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxSFM4RlBEVlFHNFpBSlFRWlNEMFBWOTZZIiwiaWF0IjoxNzEwNzU1NjY0LCJleHAiOjE3MTA3NjU2NjR9.r-iG9ouLYeROD9ks1932pSVf8vk0qLAWrkj7Pstar9Y
+Content-Type: application/json
+
+{
+
+    "completed": "true"
+}
+
+
+### Delete todo by ID
+DELETE  {{api}}/todos/01HS8FT5DXZ934RA2454VQPHSE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAxSFM4RlBEVlFHNFpBSlFRWlNEMFBWOTZZIiwiaWF0IjoxNzEwNzU1NjY0LCJleHAiOjE3MTA3NjU2NjR9.r-iG9ouLYeROD9ks1932pSVf8vk0qLAWrkj7Pstar9Y

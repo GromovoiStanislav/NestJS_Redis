@@ -7,6 +7,7 @@ import { RedisClientModule } from "./redis-client/redis-client.module";
 import { AuthModule } from "./auth/auth.module";
 import { APP_GUARD } from "@nestjs/core";
 import { JwtAuthGuard } from "./auth/guards/jwt-auth.guard";
+import { TodosModule } from './todos/todos.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { JwtAuthGuard } from "./auth/guards/jwt-auth.guard";
       load: [config]
     }),
     RedisClientModule,
-    AuthModule
+    AuthModule,
+    TodosModule
   ],
   controllers: [AppController],
   providers: [
