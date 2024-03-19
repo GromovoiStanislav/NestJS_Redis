@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true
+  },
+  "projects": {
+    "redis-client": {
+      "type": "library",
+      "root": "libs/redis-client",
+      "entryFile": "index",
+      "sourceRoot": "libs/redis-client/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/redis-client/tsconfig.lib.json"
+      }
+    }
+  }
+}
